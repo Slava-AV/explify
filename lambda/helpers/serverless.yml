@@ -1,0 +1,61 @@
+service: explify-helpers
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+stage: prod
+region: us-west-2
+functions:
+  sendFeedback:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/sendFeedback
+    handler: sendFeedback/sendFeedback.handler
+    events:
+     - http:
+         path: /sendFeedback
+         method: post
+         cors: true
+  addCredits:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/addCredits
+    handler: addCredits/addCredits.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /addCredits
+         method: post
+         cors: true
+  getDataForMemo:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/getDataForMemo
+    handler: getDataForMemo/getDataForMemo.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /getDataForMemo
+         method: post
+         cors: true
+  saveOptions:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/saveOptions
+    handler: saveOptions/saveOptions.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /saveOptions
+         method: post
+         cors: true
+  newPageReport:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/newPageReport
+    handler: newPageReport/newPageReport.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /newPageReport
+         method: post
+         cors: true

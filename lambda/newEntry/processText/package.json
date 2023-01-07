@@ -1,0 +1,17 @@
+{
+  "name": "process_text",
+  "version": "1.0.0",
+  "description": "api to process images coming from the flutter app",
+  "main": "processText.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.948.0",
+    "axios": "^0.21.1",
+    "firebase-admin": "^9.11.0",
+    "openai-api": "^1.2.1"
+  }
+}

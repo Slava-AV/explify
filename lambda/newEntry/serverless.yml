@@ -1,0 +1,57 @@
+service: explify
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+stage: prod
+region: us-west-2
+package:
+  exclude:
+      - node_modules/**
+  excludeDevDependencies: false
+functions:
+  processImage:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/processImage
+    handler: processImage/processImage.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /processImage
+         method: post
+         cors: true
+  processText:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/processText
+    handler: processText/processText.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /processText
+         method: post
+         cors: true
+  completePostCreation:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/completePostCreation
+    handler: completePostCreation/completePostCreation.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /completePostCreation
+         method: post
+         cors: true
+  processImageBulk:
+    timeout: 60
+    role: arn:aws:iam::067342954645:role/processImageBulk
+    handler: processImageBulk/processImageBulk.handler
+    layers:
+     - arn:aws:lambda:us-east-1:067342954645:layer:teachYourSelf:5
+    events:
+     - http:
+         path: /processImageBulk
+         method: post
+         cors: true
